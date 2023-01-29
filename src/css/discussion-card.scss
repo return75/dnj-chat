@@ -1,0 +1,56 @@
+$padding: 2rem;
+$imageWidth: 50px;
+
+.discussion-container {
+    display: flex;
+    border: 1px solid #ededed;
+    background: white;
+    padding: $padding;
+    width: 500px;
+    max-width: 90vw;
+    .profile-container {
+        width: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        img.profile {
+            height: $imageWidth;
+            width: $imageWidth;
+            border-radius: 50%;
+        }
+        .line {
+            margin-top: 1rem;
+            flex-grow: 1;
+            width: 2px;
+            background: #EEF2F5;
+        }
+    }
+    .content {
+        margin-left: 1rem;
+        text-align: left;
+        max-width: 80%;
+        .title {
+            font-weight: bolder;
+        }
+        .post-time {
+            color: gray;
+            margin-left: 5px;
+        }
+        p {
+            margin-top: 5px;
+            text-align: justify;
+        }
+        .buttons {
+            margin-top: 5px;
+            display: flex;
+            gap: 12px;
+            .reply {
+                background: none;
+                border: none;
+                color: #014cb9;
+                cursor: pointer;
+            }
+        }
+    }
+}

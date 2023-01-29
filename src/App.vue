@@ -4,7 +4,7 @@
   </div>
 </template>
 <script lang="ts">
-import Discussion from './components/Discussion.vue'
+import Discussion from './components/DiscussionCard.vue'
 export default {
   components: {Discussion}
 }
@@ -13,6 +13,8 @@ export default {
 <style scoped>
 .flex-center {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 </style>

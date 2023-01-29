@@ -18,7 +18,7 @@ export default defineComponent({
     },
     width: {
       type: [Number, String],
-      default: 40
+      default: 20
     },
   }
 })
