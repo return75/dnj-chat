@@ -6,22 +6,25 @@
     <div class="content">
       <div>
         <span class="title">{{replyData?.user?.name}}</span>
-        <span class="post-time">2 hours ago</span>
+        <span class="post-time">{{getRelativeTime(replyData.date)}}</span>
       </div>
       <p>
         {{replyData.text}}
       </p>
       <div class="buttons">
-        <like-button @like="likeDiscussion(replyData)"
-                     @dislike="dislikeDiscussion(replyData)"
-                     :like-numbers="replyData.likes"
-                     :is-liked="replyData.iLikedIt"></like-button>
+        <like-button
+           @like="likeDiscussion(replyData)"
+           @dislike="dislikeDiscussion(replyData)"
+           :like-numbers="replyData.likes"
+           :is-liked="replyData.iLikedIt">
+        </like-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import getRelativeTime from "./../js/relative-time.js"
 import LikeButton from "./LikeButton.vue";
 export default {
   name: "Reply.vue",
@@ -39,7 +42,8 @@ export default {
     dislikeDiscussion(reply) {
       reply.iLikedIt = false
       reply.likes--
-    }
+    },
+    getRelativeTime,
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="new-discussion">
-    <img src="" alt="" class="profile">
+    <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="" class="profile">
     <div class="discussion-topic">
       <input type="text" v-model="newTopic" placeholder="start a discussion" @keyup.enter="createNewDiscussion">
     </div>
@@ -20,7 +20,6 @@ export default defineComponent({
         context.emit('discussionCreated', newTopic.value)
       }
     }
-
     const clearNewTopic = () => {
       newTopic.value = ''
     }

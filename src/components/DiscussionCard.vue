@@ -8,7 +8,7 @@
       <div class="content">
         <div>
           <span class="title">{{discussion?.user?.name}}</span>
-          <span class="post-time">{{getTimeFromNow(discussion.date)}}</span>
+          <span class="post-time">{{getRelativeTime(discussion.date)}}</span>
         </div>
         <p>
           {{discussion.text}}
@@ -35,8 +35,9 @@ import ReplyCard from "./ReplyCard.vue";
 import LikeButton from "./LikeButton.vue";
 import NewDiscussion from "./NewDiscussion.vue";
 import {ref} from "vue";
-import IDiscussion from './../interfaces/IDiscussion'
-import ReplyOnDiscussion from './../components/ReplyOnDiscussion.vue'
+import IDiscussion from './../interfaces/IDiscussion';
+import ReplyOnDiscussion from './../components/ReplyOnDiscussion.vue';
+import getRelativeTime from "./../js/relative-time.js"
 
 export default defineComponent({
   name: "Discussion.vue",
@@ -55,12 +56,10 @@ export default defineComponent({
       discussion.iLikedIt = false
       discussion.likes--
     },
-    getTimeFromNow(timeStamp: number): void {
-
-    },
     toggleReply() {
       this.isReplyVisible = !this.isReplyVisible
     },
+    getRelativeTime,
   },
   setup() {
     const isReplyVisible = ref(false)
