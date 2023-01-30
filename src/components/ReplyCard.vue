@@ -12,7 +12,10 @@
         {{replyData.text}}
       </p>
       <div class="buttons">
-        <like-button :like-numbers="replyData.likes" :is-liked="replyData.iLikedIt"></like-button>
+        <like-button @like="likeDiscussion(replyData)"
+                     @dislike="dislikeDiscussion(replyData)"
+                     :like-numbers="replyData.likes"
+                     :is-liked="replyData.iLikedIt"></like-button>
       </div>
     </div>
   </div>
@@ -26,6 +29,16 @@ export default {
   props: {
     replyData: {
       type: Object
+    }
+  },
+  methods: {
+    likeDiscussion(reply) {
+      reply.iLikedIt = true
+      reply.likes++
+    },
+    dislikeDiscussion(reply) {
+      reply.iLikedIt = false
+      reply.likes--
     }
   }
 }
