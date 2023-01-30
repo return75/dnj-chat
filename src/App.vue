@@ -1,12 +1,21 @@
 <template>
   <div class="flex-center">
-    <discussion></discussion>
+    <discussion :discussions="discussions"></discussion>
   </div>
 </template>
 <script lang="ts">
-import Discussion from './components/DiscussionCard.vue'
+import Discussion from './components/Discussion.vue'
+import discussionsData from "./data/discussions";
+import {ref} from "vue";
+
 export default {
-  components: {Discussion}
+  components: {Discussion},
+  setup() {
+    const discussions = ref(discussionsData)
+    return {
+      discussions
+    }
+  },
 }
 </script>
 

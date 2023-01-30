@@ -1,7 +1,6 @@
 <template>
   <div class="container">
-    <new-discussion @discussion-created="createNewDiscussion" ref="newDiscussionRef"></new-discussion>
-    <div v-for="discussion in sortedDiscussion" :key="discussion.id" class="discussion-container">
+    <div class="discussion-container">
       <div class="profile-container">
         <img class="profile" :src="discussion?.user?.avatar" />
         <span class="line"></span>
@@ -31,8 +30,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, onMounted} from "vue";
-import discussionsData from "../data/discussions";
+import { defineComponent} from "vue";
 import ReplyCard from "./ReplyCard.vue";
 import LikeButton from "./LikeButton.vue";
 import NewDiscussion from "./NewDiscussion.vue";
@@ -43,6 +41,11 @@ import ReplyOnDiscussion from './../components/ReplyOnDiscussion.vue'
 export default defineComponent({
   name: "Discussion.vue",
   components: {ReplyCard, NewDiscussion, LikeButton, ReplyOnDiscussion},
+  props: {
+    discussion: {
+      type: Object
+    }
+  },
   methods: {
     likeDiscussion(discussion: IDiscussion) {
       discussion.iLikedIt = true
@@ -55,37 +58,14 @@ export default defineComponent({
     getTimeFromNow(timeStamp: number): void {
 
     },
-    createNewDiscussion(newTopic: string) {
-      let newDiscussion: IDiscussion = {
-        id: 2,
-        date: Date.now(),
-        user: {
-          name: "Marvin McKinney",
-          avatar: "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
-        },
-        text: newTopic,
-        likes: 0,
-        iLikedIt: false,
-        replies: []
-      }
-      this.discussions.push(newDiscussion)
-      this.clearNewTopic()
-    },
-    clearNewTopic() {
-      this.$refs.newDiscussionRef?.clearNewTopic()
-    },
     toggleReply() {
       this.isReplyVisible = !this.isReplyVisible
     }
   },
   setup() {
-    const discussions = ref(discussionsData)
     const isReplyVisible = ref(false)
-    const sortedDiscussion = computed(() => {
-      return discussions.value.sort((a, b) => b.date - a.date)
-    })
     return {
-      discussions, sortedDiscussion, isReplyVisible
+      isReplyVisible
     }
   },
 })
