@@ -19,11 +19,12 @@
                        @dislike="dislikeDiscussion(discussion)"
                        :like-numbers="discussion.likes"
                        :is-liked="discussion.iLikedIt"></like-button>
-          <button class="reply">Reply</button>
+          <button class="reply" @click="toggleReply">Reply</button>
         </div>
         <div class="replies">
           <reply-card v-for="reply in discussion.replies" :key="reply.id" :reply-data="reply"></reply-card>
         </div>
+        <reply-on-discussion v-if="isReplyVisible" />
       </div>
     </div>
   </div>
@@ -37,10 +38,11 @@ import LikeButton from "./LikeButton.vue";
 import NewDiscussion from "./NewDiscussion.vue";
 import {ref} from "vue";
 import IDiscussion from './../interfaces/IDiscussion'
+import ReplyOnDiscussion from './../components/ReplyOnDiscussion.vue'
 
 export default defineComponent({
   name: "Discussion.vue",
-  components: {ReplyCard, NewDiscussion, LikeButton},
+  components: {ReplyCard, NewDiscussion, LikeButton, ReplyOnDiscussion},
   methods: {
     likeDiscussion(discussion: IDiscussion) {
       discussion.iLikedIt = true
@@ -71,15 +73,19 @@ export default defineComponent({
     },
     clearNewTopic() {
       this.$refs.newDiscussionRef?.clearNewTopic()
+    },
+    toggleReply() {
+      this.isReplyVisible = !this.isReplyVisible
     }
   },
   setup() {
     const discussions = ref(discussionsData)
+    const isReplyVisible = ref(false)
     const sortedDiscussion = computed(() => {
       return discussions.value.sort((a, b) => b.date - a.date)
     })
     return {
-      discussions, sortedDiscussion
+      discussions, sortedDiscussion, isReplyVisible
     }
   },
 })

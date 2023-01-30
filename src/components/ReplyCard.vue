@@ -50,8 +50,7 @@ export default {
   border: none !important;
   width: unset !important;
   max-width: 100% !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  padding: 0 !important;
 }
 .profile-container {
   justify-content: flex-start !important;

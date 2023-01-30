@@ -48,7 +48,7 @@ export default defineComponent({
     input {
       width: 100%;
       background: white;
-      border: 1px solid #898989;
+      border: 1px solid #d9dddc;
       border-radius: 2px;
       height: 35px;
       padding-left: 1rem;
