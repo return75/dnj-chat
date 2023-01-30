@@ -3,10 +3,10 @@ export default function getRelativeTime(timeStamp) {
     const MINUTE = 60
     const HOUR = 3600
     const DAY = 86400
-    const TO_MILLISECONDS = 0.001
+    const TO_SECONDS = 0.001
 
     let difference = now - timeStamp
-    let differenceInSeconds = (difference * TO_MILLISECONDS).toFixed()
+    let differenceInSeconds = (difference * TO_SECONDS).toFixed()
     if(differenceInSeconds < MINUTE) {
         return "seconds ago"
     }
