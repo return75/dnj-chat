@@ -29,6 +29,7 @@ $imageWidth: 40px;
     .content {
         margin-left: 1rem;
         text-align: left;
+        flex-grow: 1;
         .title {
             font-weight: bolder;
         }
