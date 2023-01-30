@@ -23,7 +23,7 @@
         <div class="replies">
           <reply-card v-for="reply in discussion.replies" :key="reply.id" :reply-data="reply"></reply-card>
         </div>
-        <reply-on-discussion v-if="isReplyVisible" />
+        <reply-on-discussion v-if="isReplyVisible" :discussion="discussion" />
       </div>
     </div>
   </div>
@@ -60,7 +60,7 @@ export default defineComponent({
     },
     toggleReply() {
       this.isReplyVisible = !this.isReplyVisible
-    }
+    },
   },
   setup() {
     const isReplyVisible = ref(false)
